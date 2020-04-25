@@ -1,0 +1,38 @@
+
+<% if flash[:correct] -%>
+<p class="result correct"><%= flash[:correct] %></p>
+<% elsif flash[:incorrect] -%>
+<p class="result incorrect"><%= flash[:incorrect] %></p>
+<% end -%>
+
+<% if score_total > 0 -%>
+<p class="score">
+Your score: <%= "%.1f" % score_percent %>% (<%= score_correct %> of <%= score_total %>)
+<%= form_tag reset_path do -%>
+<div>
+  <%= submit_tag "Reset" %>
+</div>
+<% end -%>
+</p>
+<% end -%>
+<p class="item"><%= @item.name %></p>
+
+<%= form_tag choose_path do -%>
+<div>
+  <%= hidden_field_tag("id", @item.id, { :id => "cheese_id" }) %>
+  <%= hidden_field_tag("guess", "cheese", { :id => "cheese_guess" }) %>
+  <%= image_submit_tag("cheese.png", :class => "choice", :value=>"Cheese", :title => "Cheese") %>
+</div>
+<% end -%>
+<%= form_tag choose_path do -%>
+<div>
+  <%= hidden_field_tag("id", @item.id, { :id => "font_id" }) %>
+  <%= hidden_field_tag("guess", "font", { :id => "font_guess" }) %>
+  <%= image_submit_tag("font.png", :class => "choice", :value=>"Font", :title=>"Font") %>
+</div>
+<% end -%>
+
+<div id="other">
+<%= link_to "home", root_path %> | 
+<%= link_to "stats", stats_path %>
+</div>

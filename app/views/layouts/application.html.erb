@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cheese or Font</title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+  </head>
+
+  <body>
+    <div id="container">
+      <%= yield %>
+    </div>
+    <% if hostname.include? "cheeseorfont" -%>
+    <% profile_num = (hostname.include? "cheeseorfont.com") ? 2 : 1 -%>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+    var pageTracker = _gat._getTracker("UA-10607039-<%= profile_num %>");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+  </body>
+</html>
+<% end -%>
